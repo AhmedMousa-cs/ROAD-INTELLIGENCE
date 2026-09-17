@@ -1,0 +1,960 @@
+{
+  "note": "Synthetic demo output produced by `python -m modules.tracking_analytics.inference --demo`. Detections come from ScriptedVehicleDetector, not a real model, and the damage/segmentation entries are stand-ins for the other three modules.",
+  "session_summary": {
+    "frames_processed": 40,
+    "unique_vehicles_seen": 3,
+    "tracker_backend": "native",
+    "line_counts": {
+      "stop_line": {
+        "in": 1,
+        "out": 2
+      }
+    },
+    "speed_calibrated": true,
+    "wrong_way_configured": true,
+    "road_health": {
+      "frames_scored": 40,
+      "road_health_score": 89.8,
+      "road_health_grade": "A",
+      "road_health_label": "Good",
+      "worst_frame_score": 89.8,
+      "worst_frame_grade": "A",
+      "road_health_basis": "Project-defined road condition indicator - not an official civil-engineering road safety certification."
+    },
+    "analytics_fps_excluding_detector": 118.4
+  },
+  "frames": [
+    {
+      "frame_id": 0,
+      "timestamp": 0.0,
+      "detections": [],
+      "segmentations": [],
+      "tracks": [],
+      "alerts": [],
+      "analytics": {
+        "vehicle_count": 0,
+        "traffic_density": "low",
+        "road_damage_count": 2,
+        "obstacle_count": 1,
+        "speed_bump_count": 1,
+        "person_count": 0,
+        "counts_by_type": {},
+        "unique_vehicles_seen": 0,
+        "unique_counts_by_type": {},
+        "line_counts": {
+          "stop_line": {
+            "in": 0,
+            "out": 0
+          }
+        },
+        "damaged_surface_ratio": 0.06,
+        "condition_counts_by_class": {
+          "pothole": 1,
+          "alligator_crack": 1,
+          "road_debris": 1,
+          "speed_bump": 1
+        },
+        "road_health_score": 89.8,
+        "road_health_grade": "A",
+        "road_health_label": "Good",
+        "road_health_penalty": 10.2,
+        "road_health_breakdown": {
+          "count_penalty": 9.0,
+          "area_penalty": 1.2
+        },
+        "road_health_basis": "Project-defined road condition indicator - not an official civil-engineering road safety certification.",
+        "scene_configured": true
+      }
+    },
+    {
+      "frame_id": 20,
+      "timestamp": 0.8,
+      "detections": [],
+      "segmentations": [],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "car",
+          "bbox": [
+            335.1456310679611,
+            435.7766990291262,
+            415.1456310679611,
+            500.7766990291262
+          ],
+          "center": [
+            375.1456310679611,
+            468.2766990291262
+          ],
+          "velocity_px_s": 181.6956531679226,
+          "confidence": 0.93,
+          "source": "tracking_analytics",
+          "age_frames": 21,
+          "estimated_speed_kmh": 45.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 283.93483511450137,
+          "wrong_way": false,
+          "trajectory": [
+            [
+              336.95,
+              622.2
+            ],
+            [
+              339.51,
+              611.89
+            ],
+            [
+              341.98,
+              601.94
+            ],
+            [
+              344.36,
+              592.34
+            ],
+            [
+              346.67,
+              583.06
+            ],
+            [
+              348.89,
+              574.09
+            ],
+            [
+              351.04,
+              565.41
+            ],
+            [
+              353.13,
+              557.02
+            ],
+            [
+              355.14,
+              548.89
+            ],
+            [
+              357.1,
+              541.01
+            ],
+            [
+              358.99,
+              533.38
+            ],
+            [
+              360.83,
+              525.98
+            ],
+            [
+              362.61,
+              518.8
+            ],
+            [
+              364.34,
+              511.84
+            ],
+            [
+              366.02,
+              505.07
+            ],
+            [
+              367.65,
+              498.5
+            ],
+            [
+              369.23,
+              492.12
+            ],
+            [
+              370.77,
+              485.91
+            ],
+            [
+              372.27,
+              479.87
+            ],
+            [
+              373.73,
+              473.99
+            ],
+            [
+              375.15,
+              468.28
+            ]
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "truck",
+          "bbox": [
+            533.724832214765,
+            451.3758389261744,
+            643.724832214765,
+            516.3758389261744
+          ],
+          "center": [
+            588.724832214765,
+            483.8758389261744
+          ],
+          "velocity_px_s": 120.89315838219504,
+          "confidence": 0.88,
+          "source": "tracking_analytics",
+          "age_frames": 21,
+          "estimated_speed_kmh": 30.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 256.06516488549863,
+          "wrong_way": false,
+          "trajectory": [
+            [
+              613.33,
+              583.06
+            ],
+            [
+              611.84,
+              577.04
+            ],
+            [
+              610.38,
+              571.16
+            ],
+            [
+              608.96,
+              565.41
+            ],
+            [
+              607.56,
+              559.78
+            ],
+            [
+              606.19,
+              554.28
+            ],
+            [
+              604.86,
+              548.89
+            ],
+            [
+              603.55,
+              543.61
+            ],
+            [
+              602.26,
+              538.44
+            ],
+            [
+              601.01,
+              533.38
+            ],
+            [
+              599.78,
+              528.42
+            ],
+            [
+              598.57,
+              523.57
+            ],
+            [
+              597.39,
+              518.8
+            ],
+            [
+              596.23,
+              514.14
+            ],
+            [
+              595.1,
+              509.56
+            ],
+            [
+              593.98,
+              505.07
+            ],
+            [
+              592.89,
+              500.67
+            ],
+            [
+              591.82,
+              496.35
+            ],
+            [
+              590.77,
+              492.12
+            ],
+            [
+              589.74,
+              487.96
+            ],
+            [
+              588.72,
+              483.88
+            ]
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "car",
+          "bbox": [
+            260.9944751381216,
+            446.049723756906,
+            340.9944751381216,
+            511.049723756906
+          ],
+          "center": [
+            300.9944751381216,
+            478.549723756906
+          ],
+          "velocity_px_s": 120.3884014866658,
+          "confidence": 0.9,
+          "source": "tracking_analytics",
+          "age_frames": 21,
+          "estimated_speed_kmh": 40.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 112.46674992099575,
+          "wrong_way": true,
+          "trajectory": [
+            [
+              336.0,
+              393.9
+            ],
+            [
+              334.58,
+              397.34
+            ],
+            [
+              333.13,
+              400.85
+            ],
+            [
+              331.65,
+              404.42
+            ],
+            [
+              330.14,
+              408.07
+            ],
+            [
+              328.6,
+              411.8
+            ],
+            [
+              327.03,
+              415.6
+            ],
+            [
+              325.42,
+              419.48
+            ],
+            [
+              323.78,
+              423.45
+            ],
+            [
+              322.11,
+              427.5
+            ],
+            [
+              320.39,
+              431.64
+            ],
+            [
+              318.65,
+              435.87
+            ],
+            [
+              316.86,
+              440.19
+            ],
+            [
+              315.03,
+              444.61
+            ],
+            [
+              313.16,
+              449.13
+            ],
+            [
+              311.25,
+              453.75
+            ],
+            [
+              309.29,
+              458.48
+            ],
+            [
+              307.29,
+              463.32
+            ],
+            [
+              305.24,
+              468.28
+            ],
+            [
+              303.14,
+              473.35
+            ],
+            [
+              300.99,
+              478.55
+            ]
+          ]
+        }
+      ],
+      "alerts": [
+        {
+          "type": "wrong_way",
+          "track_id": 3,
+          "confidence": 1.0,
+          "message": "Possible wrong-way vehicle",
+          "class": "car",
+          "zone": "northbound_carriageway",
+          "frame_id": 20,
+          "observed_direction_deg": 112.46674992099575,
+          "allowed_direction_deg": 270.0,
+          "angle_to_allowed_deg": 157.5,
+          "evidence_frames": 14,
+          "verified": false
+        }
+      ],
+      "analytics": {
+        "vehicle_count": 3,
+        "traffic_density": "low",
+        "road_damage_count": 2,
+        "obstacle_count": 1,
+        "speed_bump_count": 1,
+        "person_count": 0,
+        "counts_by_type": {
+          "car": 2,
+          "truck": 1
+        },
+        "unique_vehicles_seen": 3,
+        "unique_counts_by_type": {
+          "car": 2,
+          "truck": 1
+        },
+        "line_counts": {
+          "stop_line": {
+            "in": 0,
+            "out": 2
+          }
+        },
+        "damaged_surface_ratio": 0.06,
+        "condition_counts_by_class": {
+          "pothole": 1,
+          "alligator_crack": 1,
+          "road_debris": 1,
+          "speed_bump": 1
+        },
+        "road_health_score": 89.8,
+        "road_health_grade": "A",
+        "road_health_label": "Good",
+        "road_health_penalty": 10.2,
+        "road_health_breakdown": {
+          "count_penalty": 9.0,
+          "area_penalty": 1.2
+        },
+        "road_health_basis": "Project-defined road condition indicator - not an official civil-engineering road safety certification.",
+        "scene_configured": true
+      }
+    },
+    {
+      "frame_id": 39,
+      "timestamp": 1.56,
+      "detections": [],
+      "segmentations": [],
+      "tracks": [
+        {
+          "track_id": 1,
+          "class": "car",
+          "bbox": [
+            356.3601161665053,
+            350.2758954501452,
+            436.3601161665053,
+            415.2758954501452
+          ],
+          "center": [
+            396.3601161665053,
+            382.7758954501452
+          ],
+          "velocity_px_s": 110.03658843491144,
+          "confidence": 0.93,
+          "source": "tracking_analytics",
+          "age_frames": 40,
+          "estimated_speed_kmh": 45.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 283.93483511450125,
+          "wrong_way": false,
+          "trajectory": [
+            [
+              358.99,
+              533.38
+            ],
+            [
+              360.83,
+              525.98
+            ],
+            [
+              362.61,
+              518.8
+            ],
+            [
+              364.34,
+              511.84
+            ],
+            [
+              366.02,
+              505.07
+            ],
+            [
+              367.65,
+              498.5
+            ],
+            [
+              369.23,
+              492.12
+            ],
+            [
+              370.77,
+              485.91
+            ],
+            [
+              372.27,
+              479.87
+            ],
+            [
+              373.73,
+              473.99
+            ],
+            [
+              375.15,
+              468.28
+            ],
+            [
+              376.53,
+              462.71
+            ],
+            [
+              377.87,
+              457.29
+            ],
+            [
+              379.18,
+              452.0
+            ],
+            [
+              380.46,
+              446.85
+            ],
+            [
+              381.71,
+              441.83
+            ],
+            [
+              382.92,
+              436.94
+            ],
+            [
+              384.11,
+              432.16
+            ],
+            [
+              385.26,
+              427.5
+            ],
+            [
+              386.39,
+              422.95
+            ],
+            [
+              387.49,
+              418.51
+            ],
+            [
+              388.57,
+              414.17
+            ],
+            [
+              389.62,
+              409.93
+            ],
+            [
+              390.65,
+              405.78
+            ],
+            [
+              391.66,
+              401.73
+            ],
+            [
+              392.64,
+              397.77
+            ],
+            [
+              393.6,
+              393.9
+            ],
+            [
+              394.54,
+              390.11
+            ],
+            [
+              395.46,
+              386.4
+            ],
+            [
+              396.36,
+              382.78
+            ]
+          ]
+        },
+        {
+          "track_id": 2,
+          "class": "truck",
+          "bbox": [
+            517.5053533190577,
+            386.00642398286925,
+            627.5053533190577,
+            451.00642398286925
+          ],
+          "center": [
+            572.5053533190577,
+            418.50642398286925
+          ],
+          "velocity_px_s": 85.46569267499012,
+          "confidence": 0.88,
+          "source": "tracking_analytics",
+          "age_frames": 40,
+          "estimated_speed_kmh": 30.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 256.0651648854985,
+          "wrong_way": false,
+          "trajectory": [
+            [
+              599.78,
+              528.42
+            ],
+            [
+              598.57,
+              523.57
+            ],
+            [
+              597.39,
+              518.8
+            ],
+            [
+              596.23,
+              514.14
+            ],
+            [
+              595.1,
+              509.56
+            ],
+            [
+              593.98,
+              505.07
+            ],
+            [
+              592.89,
+              500.67
+            ],
+            [
+              591.82,
+              496.35
+            ],
+            [
+              590.77,
+              492.12
+            ],
+            [
+              589.74,
+              487.96
+            ],
+            [
+              588.72,
+              483.88
+            ],
+            [
+              587.73,
+              479.87
+            ],
+            [
+              586.75,
+              475.93
+            ],
+            [
+              585.8,
+              472.07
+            ],
+            [
+              584.85,
+              468.28
+            ],
+            [
+              583.93,
+              464.55
+            ],
+            [
+              583.02,
+              460.89
+            ],
+            [
+              582.13,
+              457.29
+            ],
+            [
+              581.25,
+              453.75
+            ],
+            [
+              580.39,
+              450.27
+            ],
+            [
+              579.54,
+              446.85
+            ],
+            [
+              578.71,
+              443.49
+            ],
+            [
+              577.89,
+              440.19
+            ],
+            [
+              577.08,
+              436.94
+            ],
+            [
+              576.29,
+              433.74
+            ],
+            [
+              575.5,
+              430.6
+            ],
+            [
+              574.74,
+              427.5
+            ],
+            [
+              573.98,
+              424.45
+            ],
+            [
+              573.24,
+              421.46
+            ],
+            [
+              572.51,
+              418.51
+            ]
+          ]
+        },
+        {
+          "track_id": 3,
+          "class": "car",
+          "bbox": [
+            207.24137931034483,
+            576.0344827586208,
+            287.2413793103448,
+            641.0344827586208
+          ],
+          "center": [
+            247.24137931034483,
+            608.5344827586208
+          ],
+          "velocity_px_s": 194.5380748454967,
+          "confidence": 0.9,
+          "source": "tracking_analytics",
+          "age_frames": 40,
+          "estimated_speed_kmh": 40.0,
+          "speed_method": "homography_from_points",
+          "speed_reliable": true,
+          "direction_deg": 112.46674992099571,
+          "wrong_way": true,
+          "trajectory": [
+            [
+              320.39,
+              431.64
+            ],
+            [
+              318.65,
+              435.87
+            ],
+            [
+              316.86,
+              440.19
+            ],
+            [
+              315.03,
+              444.61
+            ],
+            [
+              313.16,
+              449.13
+            ],
+            [
+              311.25,
+              453.75
+            ],
+            [
+              309.29,
+              458.48
+            ],
+            [
+              307.29,
+              463.32
+            ],
+            [
+              305.24,
+              468.28
+            ],
+            [
+              303.14,
+              473.35
+            ],
+            [
+              300.99,
+              478.55
+            ],
+            [
+              298.79,
+              483.88
+            ],
+            [
+              296.53,
+              489.33
+            ],
+            [
+              294.22,
+              494.93
+            ],
+            [
+              291.85,
+              500.67
+            ],
+            [
+              289.41,
+              506.56
+            ],
+            [
+              286.91,
+              512.6
+            ],
+            [
+              284.35,
+              518.8
+            ],
+            [
+              281.71,
+              525.17
+            ],
+            [
+              279.01,
+              531.72
+            ],
+            [
+              276.23,
+              538.44
+            ],
+            [
+              273.37,
+              545.36
+            ],
+            [
+              270.43,
+              552.47
+            ],
+            [
+              267.4,
+              559.78
+            ],
+            [
+              264.29,
+              567.31
+            ],
+            [
+              261.08,
+              575.07
+            ],
+            [
+              257.78,
+              583.06
+            ],
+            [
+              254.37,
+              591.29
+            ],
+            [
+              250.86,
+              599.78
+            ],
+            [
+              247.24,
+              608.53
+            ]
+          ]
+        }
+      ],
+      "alerts": [
+        {
+          "type": "wrong_way",
+          "track_id": 3,
+          "confidence": 1.0,
+          "message": "Possible wrong-way vehicle",
+          "class": "car",
+          "zone": "northbound_carriageway",
+          "frame_id": 39,
+          "observed_direction_deg": 112.46674992099571,
+          "allowed_direction_deg": 270.0,
+          "angle_to_allowed_deg": 157.5,
+          "evidence_frames": 33,
+          "verified": false
+        }
+      ],
+      "analytics": {
+        "vehicle_count": 3,
+        "traffic_density": "low",
+        "road_damage_count": 2,
+        "obstacle_count": 1,
+        "speed_bump_count": 1,
+        "person_count": 0,
+        "counts_by_type": {
+          "car": 2,
+          "truck": 1
+        },
+        "unique_vehicles_seen": 3,
+        "unique_counts_by_type": {
+          "car": 2,
+          "truck": 1
+        },
+        "line_counts": {
+          "stop_line": {
+            "in": 1,
+            "out": 2
+          }
+        },
+        "damaged_surface_ratio": 0.06,
+        "condition_counts_by_class": {
+          "pothole": 1,
+          "alligator_crack": 1,
+          "road_debris": 1,
+          "speed_bump": 1
+        },
+        "road_health_score": 89.8,
+        "road_health_grade": "A",
+        "road_health_label": "Good",
+        "road_health_penalty": 10.2,
+        "road_health_breakdown": {
+          "count_penalty": 9.0,
+          "area_penalty": 1.2
+        },
+        "road_health_basis": "Project-defined road condition indicator - not an official civil-engineering road safety certification.",
+        "scene_configured": true
+      }
+    }
+  ]
+}

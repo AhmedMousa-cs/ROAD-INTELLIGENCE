@@ -1,0 +1,197 @@
+{
+  "module": "road_damage",
+  "weights": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\models\\road_damage_best.pt",
+  "data_yaml": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\data\\road_damage_prepared\\data.yaml",
+  "classes": [
+    "pothole",
+    "longitudinal_crack",
+    "transverse_crack",
+    "alligator_crack"
+  ],
+  "evaluated_at_utc": "2026-09-17T09:33:51.918963+00:00",
+  "environment": {
+    "python": "3.10.11",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "device": "cuda"
+  },
+  "splits": {
+    "val": {
+      "split": "val",
+      "split_note": "Internal validation split created by prepare_dataset.py.",
+      "overall": {
+        "mAP50": 0.4785,
+        "mAP50_95": 0.2273,
+        "precision": 0.5353,
+        "recall": 0.5158
+      },
+      "per_class": {
+        "pothole": {
+          "precision": 0.5568,
+          "recall": 0.4787,
+          "AP50": 0.4839,
+          "AP50_95": 0.1967
+        },
+        "longitudinal_crack": {
+          "precision": 0.5124,
+          "recall": 0.5203,
+          "AP50": 0.4572,
+          "AP50_95": 0.2385
+        },
+        "transverse_crack": {
+          "precision": 0.5055,
+          "recall": 0.5083,
+          "AP50": 0.4762,
+          "AP50_95": 0.2188
+        },
+        "alligator_crack": {
+          "precision": 0.5665,
+          "recall": 0.5559,
+          "AP50": 0.4965,
+          "AP50_95": 0.2551
+        }
+      },
+      "thresholds": {
+        "confidence": 0.001,
+        "iou": 0.6,
+        "image_size": 640
+      },
+      "confusion_matrix": {
+        "labels": [
+          "pothole",
+          "longitudinal_crack",
+          "transverse_crack",
+          "alligator_crack",
+          "background"
+        ],
+        "matrix": [
+          [
+            1012,
+            61,
+            9,
+            55,
+            24754
+          ],
+          [
+            122,
+            2225,
+            245,
+            233,
+            76992
+          ],
+          [
+            15,
+            307,
+            1103,
+            50,
+            35265
+          ],
+          [
+            86,
+            334,
+            49,
+            1008,
+            23519
+          ],
+          [
+            150,
+            329,
+            103,
+            59,
+            0
+          ]
+        ],
+        "note": "Rows = predicted, columns = ground truth (Ultralytics convention)."
+      },
+      "artifacts_dir": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\runs\\detect\\val-2"
+    },
+    "internal_test": {
+      "split": "internal_test",
+      "split_note": "Internal held-out test split created by prepare_dataset.py before training. NOT the official RDD2022 challenge test set.",
+      "overall": {
+        "mAP50": 0.4762,
+        "mAP50_95": 0.2243,
+        "precision": 0.522,
+        "recall": 0.5329
+      },
+      "per_class": {
+        "pothole": {
+          "precision": 0.514,
+          "recall": 0.4721,
+          "AP50": 0.4484,
+          "AP50_95": 0.1808
+        },
+        "longitudinal_crack": {
+          "precision": 0.5168,
+          "recall": 0.5444,
+          "AP50": 0.4565,
+          "AP50_95": 0.2359
+        },
+        "transverse_crack": {
+          "precision": 0.5121,
+          "recall": 0.534,
+          "AP50": 0.4833,
+          "AP50_95": 0.2194
+        },
+        "alligator_crack": {
+          "precision": 0.545,
+          "recall": 0.581,
+          "AP50": 0.5169,
+          "AP50_95": 0.261
+        }
+      },
+      "thresholds": {
+        "confidence": 0.001,
+        "iou": 0.6,
+        "image_size": 640
+      },
+      "confusion_matrix": {
+        "labels": [
+          "pothole",
+          "longitudinal_crack",
+          "transverse_crack",
+          "alligator_crack",
+          "background"
+        ],
+        "matrix": [
+          [
+            584,
+            38,
+            7,
+            31,
+            15903
+          ],
+          [
+            64,
+            1548,
+            187,
+            149,
+            49071
+          ],
+          [
+            13,
+            193,
+            762,
+            34,
+            23361
+          ],
+          [
+            48,
+            220,
+            32,
+            690,
+            15819
+          ],
+          [
+            79,
+            207,
+            72,
+            41,
+            0
+          ]
+        ],
+        "note": "Rows = predicted, columns = ground truth (Ultralytics convention)."
+      },
+      "artifacts_dir": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\runs\\detect\\val-3"
+    }
+  }
+}

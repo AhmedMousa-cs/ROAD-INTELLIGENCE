@@ -1,0 +1,146 @@
+# =============================================================================
+# Example scene configuration for modules/tracking_analytics
+# =============================================================================
+# A "scene" is one camera viewpoint. Direction zones, counting lines and
+# calibration are all viewpoint-specific, so they cannot live in
+# shared/config.py - copy this file per camera and load it with:
+#
+#     from modules.tracking_analytics import TrackingAnalytics, TrackingAnalyticsConfig
+#     config = TrackingAnalyticsConfig.from_yaml("scene_config.yaml")
+#     analytics = TrackingAnalytics("models/vehicle_detection_yolov8n.pt", config)
+#
+# Every section is OPTIONAL. With no config at all the module still runs and
+# produces tracks, counts and density using the shared defaults; it simply
+# stays silent about wrong-way driving and reports no real-world speed,
+# because neither can be inferred without the information below.
+#
+# All image coordinates are in ORIGINAL frame pixels, top-left origin, with y
+# growing DOWNWARD (OpenCV convention).
+# =============================================================================
+
+# Frames per second of the source. Overridden automatically by the actual FPS
+# when reading a video file with process_video().
+fps: 25.0
+
+# Trajectory points attached to each track in the output (for the dashboard's
+# trail rendering). Set include_trajectory_in_output: false to slim the JSON.
+include_trajectory_in_output: true
+trajectory_output_points: 30
+
+# -----------------------------------------------------------------------------
+# Detector thresholds. Defaults come from shared/config.py; override per scene
+# only when you have a reason (e.g. a noisy night camera).
+# -----------------------------------------------------------------------------
+inference:
+  confidence_threshold: 0.40
+  iou_threshold: 0.50
+  image_size: 640
+  device: auto            # auto | cuda | cpu
+
+# -----------------------------------------------------------------------------
+# Tracking
+# -----------------------------------------------------------------------------
+tracker:
+  # native   - dependency-free ByteTrack-style association (default)
+  # bytetrack / botsort - use Ultralytics' implementation when installed
+  #                       (botsort adds camera-motion compensation, which
+  #                        helps on a moving dashcam)
+  # auto     - bytetrack if ultralytics is importable, else native
+  backend: native
+  track_high_thresh: 0.50
+  track_low_thresh: 0.10
+  new_track_thresh: 0.60
+  max_age: 30             # frames an unseen track is kept before removal
+  min_hits: 3             # updates before a track is reported
+
+# -----------------------------------------------------------------------------
+# Counting and density
+# -----------------------------------------------------------------------------
+traffic:
+  density_thresholds:
+    low_max: 5            # 0-5 active vehicles  -> low
+    medium_max: 15        # 6-15                 -> medium
+                          # above medium_max     -> high
+  counting_lines:
+    - name: stop_line
+      p1: [0, 520]        # one end of the line, in pixels
+      p2: [960, 520]      # the other end
+      # Which label lands on which side depends on p1/p2 order - check once
+      # against a sample clip and swap these if they come out reversed.
+      positive_label: southbound
+      negative_label: northbound
+      emit_alert: false   # true to also raise a `line_crossing` alert
+
+# -----------------------------------------------------------------------------
+# Speed estimation
+# -----------------------------------------------------------------------------
+# WITHOUT this section, estimated_speed_kmh is null for every track and only
+# velocity_px_s is reported. That is intentional - pixel motion is not speed.
+#
+# To calibrate: pause a frame, pick four points on the road surface whose real
+# dimensions you know (a lane is ~3.5 m wide; dashed lane markings in many
+# countries are a fixed length/gap), and list them in the SAME ORDER in both
+# lists. world_points are metres in a flat road-plane coordinate system you
+# choose - typically x across the road, y along it.
+speed:
+  smoothing_window: 15    # trajectory points used for the displacement
+  min_points: 8           # withhold a speed until the track is this long
+  max_plausible_kmh: 250  # above this the value is withheld, not reported
+  calibration:
+    image_points: [[120, 700], [840, 700], [620, 320], [340, 320]]
+    world_points: [[0, 0], [7.0, 0], [7.0, 40.0], [0, 40.0]]
+    description: "7 m wide x 40 m deep road rectangle."
+    # Alternatives to image_points/world_points:
+    # homography: [[...], [...], [...]]   # if you already have a 3x3 matrix
+    # pixels_per_meter: 12.0              # overhead cameras ONLY; ignores
+    #                                     # perspective, always flagged
+    #                                     # speed_reliable: false
+
+# -----------------------------------------------------------------------------
+# Wrong-way detection
+# -----------------------------------------------------------------------------
+# WITHOUT zones, no wrong-way alert is ever raised - the module has no way to
+# know which direction is correct, and guessing from the majority flow would
+# be wrong exactly when a road is empty or congested.
+wrong_way:
+  min_frames: 8           # consistent violating frames before alerting
+  min_displacement_px: 25 # ignore parked/near-stationary vehicles
+  min_confidence: 0.60
+  emit_while_active: true # re-emit each frame while the vehicle is still wrong-way
+  zones:
+    - name: northbound_carriageway
+      # Direction traffic is ALLOWED to move, as an image-space vector.
+      # [0, -1] = up the frame (away from a camera facing oncoming traffic)
+      # [0, 1]  = down the frame   [1, 0] = left-to-right
+      allowed_direction: [0, -1]
+      tolerance_deg: 60   # motion within 60 deg of allowed is compliant;
+                          # 120+ deg is a violation; in between is ignored
+                          # (a turning or lane-changing vehicle)
+      # Restrict the rule to one carriageway. Omit for the whole frame.
+      polygon: [[480, 720], [960, 720], [700, 320], [520, 320]]
+    - name: southbound_carriageway
+      allowed_direction: [0, 1]
+      tolerance_deg: 60
+      polygon: [[0, 720], [480, 720], [520, 320], [340, 320]]
+
+# -----------------------------------------------------------------------------
+# Road Health Score (project-defined indicator, NOT a civil-engineering rating)
+# -----------------------------------------------------------------------------
+# Weights default to shared/config.py:ROAD_HEALTH_WEIGHTS. Override here only
+# with team agreement, since the number is meant to be comparable across runs.
+road_health:
+  max_score: 100.0
+  count_weights:
+    pothole: 5.0
+    alligator_crack: 3.0
+    longitudinal_crack: 1.5
+    transverse_crack: 1.5
+    ravelling: 2.0
+    road_patch: 0.5
+    road_debris: 1.0
+  area_weight: 20.0       # multiplier on summed segmentation area_ratio
+  area_severity:
+    pothole: 1.0
+    surface_damage: 1.0
+    ravelling: 0.6
+    road_patch: 0.2

@@ -1,0 +1,46 @@
+{
+  "exported_weights": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\models\\road_damage_best.pt",
+  "ultralytics_run_dir": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\runs\\detect\\runs\\road_damage\\train",
+  "started_at_utc": "2026-09-17T09:00:17.803738+00:00",
+  "training_time_seconds": 1036.5,
+  "training_time_human": "0.29 h",
+  "hyperparameters": {
+    "model": "models/road_damage_best_640_baseline.pt",
+    "pretrained": true,
+    "epochs": 1,
+    "batch_size": 8,
+    "image_size": 960,
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "optimizer": "auto",
+    "patience": 15,
+    "device": "cuda",
+    "workers": 8
+  },
+  "augmentation": {
+    "hsv_h": 0.015,
+    "hsv_s": 0.5,
+    "hsv_v": 0.4,
+    "degrees": 3.0,
+    "translate": 0.1,
+    "scale": 0.4,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "close_mosaic": 10
+  },
+  "classes": [
+    "pothole",
+    "longitudinal_crack",
+    "transverse_crack",
+    "alligator_crack"
+  ],
+  "data_yaml": "C:\\Users\\ahmed\\PycharmProjects\\NTI\\Graduation_project\\road_intelligence\\data\\road_damage_prepared\\data.yaml",
+  "environment": {
+    "python": "3.10.11",
+    "platform": "Windows-10-10.0.26200-SP0"
+  }
+}

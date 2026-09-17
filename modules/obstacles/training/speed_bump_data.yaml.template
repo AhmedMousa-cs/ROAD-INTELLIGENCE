@@ -1,0 +1,21 @@
+# modules/obstacles/training/speed_bump_data.yaml.template
+# -----------------------------------------------------------------------------
+# This is a TEMPLATE, not a real dataset config. Download "Speed Bump
+# Detection v10" from Roboflow yourself (YOLOv8 detection export) -- it
+# already ships its own data.yaml with train/val/test paths pointing at the
+# 5498/266/240 images from its published split. Use THAT file directly with
+# train_speed_bump.py; don't hand-edit this template and pass it off as the
+# real dataset.
+#
+# Before training, open the real downloaded data.yaml and confirm `names:`
+# only contains what you expect (see class_mapping.SPEED_BUMP_RAW_TO_NORMALIZED).
+# train_speed_bump.py's _check_dataset_names() enforces this automatically
+# and will raise if it finds anything unrecognized.
+# -----------------------------------------------------------------------------
+path: /path/to/speed-bump-detection-v10   # <- replace with your download path
+train: train/images
+val: valid/images
+test: test/images
+
+names:
+  0: speed_bump

@@ -1,0 +1,64 @@
+{
+  "frame_id": 0,
+  "timestamp": 0.0,
+  "detections": [
+    {
+      "class": "pothole",
+      "confidence": 0.93,
+      "bbox": [
+        300.0,
+        430.0,
+        430.0,
+        530.0
+      ],
+      "source": "road_damage",
+      "class_id": 0
+    },
+    {
+      "class": "longitudinal_crack",
+      "confidence": 0.71,
+      "bbox": [
+        520.0,
+        400.0,
+        600.0,
+        690.0
+      ],
+      "source": "road_damage",
+      "class_id": 0
+    },
+    {
+      "class": "alligator_crack",
+      "confidence": 0.64,
+      "bbox": [
+        120.0,
+        520.0,
+        300.0,
+        640.0
+      ],
+      "source": "road_damage",
+      "class_id": 0
+    },
+    {
+      "class": "transverse_crack",
+      "confidence": 0.55,
+      "bbox": [
+        640.0,
+        470.0,
+        900.0,
+        520.0
+      ],
+      "source": "road_damage",
+      "class_id": 0
+    }
+  ],
+  "segmentations": [],
+  "tracks": [],
+  "alerts": [],
+  "analytics": {
+    "vehicle_count": 0,
+    "traffic_density": "low",
+    "road_damage_count": 4,
+    "obstacle_count": 0,
+    "speed_bump_count": 0
+  }
+}

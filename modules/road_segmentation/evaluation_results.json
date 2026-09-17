@@ -1,0 +1,29 @@
+{
+  "_note": "TEMPLATE. No training has been run yet in this scaffold — fill in real numbers after training and delete this _note field. Never invent numbers.",
+  "model": "road_segmentation_best.pt",
+  "architecture": "yolov8n-seg (placeholder - record actual variant used)",
+  "datasets_used": ["pothole_seg", "roboflow_road_defect"],
+  "evaluation_split": "REQUIRED: state exactly which split these numbers come from, e.g. 'published validation set (pothole_seg): 60 images' or 'internal held-out test split'. Do not label anything an official test set unless the dataset provides one.",
+  "overall": {
+    "mask_mAP50": null,
+    "mask_mAP50-95": null,
+    "precision": null,
+    "recall": null
+  },
+  "per_class": {
+    "pothole": { "mAP50": null, "mAP50-95": null, "precision": null, "recall": null, "IoU": null },
+    "surface_damage": { "mAP50": null, "mAP50-95": null, "precision": null, "recall": null, "IoU": null },
+    "road_patch": { "mAP50": null, "mAP50-95": null, "precision": null, "recall": null, "IoU": null },
+    "ravelling": { "mAP50": null, "mAP50-95": null, "precision": null, "recall": null, "IoU": null }
+  },
+  "training_parameters": {
+    "epochs": null,
+    "batch_size": null,
+    "image_size": null,
+    "optimizer": null,
+    "learning_rate": null,
+    "augmentation": null,
+    "device": null,
+    "training_time_hours": null
+  }
+}

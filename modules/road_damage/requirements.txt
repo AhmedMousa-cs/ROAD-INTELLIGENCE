@@ -1,0 +1,21 @@
+# modules/road_damage — Person 1 dependencies
+#
+# The repo-level requirements.txt already covers numpy / opencv / PyYAML /
+# pytest / ultralytics / streamlit. This file exists so the module can be
+# installed on its own, and to record which deps are OPTIONAL.
+
+# --- Required at inference ----------------------------------------------------
+numpy>=1.24
+opencv-python>=4.8
+PyYAML>=6.0
+
+# --- Required to LOAD real weights, to train, and to evaluate -----------------
+# Not needed for the test suite or for `--demo`, both of which run on an
+# injected scripted detector.
+# NOTE: ultralytics is AGPL-3.0 — see README "Known limitations".
+# torch comes in with ultralytics; install the CUDA build from pytorch.org for
+# GPU training.
+ultralytics>=8.2
+
+# --- Testing ------------------------------------------------------------------
+pytest>=7.4

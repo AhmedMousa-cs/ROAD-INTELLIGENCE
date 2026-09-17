@@ -1,0 +1,20 @@
+# modules/road_segmentation/data_pothole_seg.yaml
+#
+# Provisional YOLOv8-seg data.yaml for Dataset 1 ("Pothole Image
+# Segmentation Dataset"). Paths assume the dataset has been downloaded to
+# data/pothole_seg/ preserving its published structure. Update `path` to
+# match wherever it's actually placed — do not hard-code an absolute path.
+#
+# Published split (per spec): 720 train / 60 validation, NO official test
+# split. If you carve out an internal held-out test split from the
+# original non-augmented images before augmenting, add a `test:` key here
+# and call it an "internal held-out test split" in the README — never
+# "official test set".
+
+path: ../../data/pothole_seg
+train: images/train
+val: images/val
+# test: images/internal_test   # add only if you create one yourself
+
+names:
+  0: pothole

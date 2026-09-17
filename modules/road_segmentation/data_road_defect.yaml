@@ -1,0 +1,27 @@
+# modules/road_segmentation/data_road_defect.yaml
+#
+# Provisional YOLOv8-seg data.yaml for Dataset 2 (Roboflow "Road Defect
+# Segmentation"). The `names` list below is a PLACEHOLDER based on the
+# spec's suggested mapping (section: PERSON 2 — Dataset 2). Before
+# training:
+#
+#   1. Download the actual dataset export.
+#   2. Replace `names` below with the dataset's REAL data.yaml names list
+#      (do not hand-type it from memory).
+#   3. Run:
+#        python -m modules.road_segmentation.class_mapping \
+#            --verify <downloaded>/data.yaml --dataset roboflow_road_defect
+#      and resolve any "UNMAPPED" classes it reports before training.
+
+path: ../../data/road_defect_seg
+train: train/images
+val: valid/images
+test: test/images  # only keep this key if the export actually ships a test split
+
+names:
+  0: pothole
+  1: alligator
+  2: "Major Surface Damage"
+  3: "Minor Surface Damage"
+  4: "Road Patch"
+  5: "Ravelling"

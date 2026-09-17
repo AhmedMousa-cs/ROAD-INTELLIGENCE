@@ -1,0 +1,66 @@
+# =============================================================================
+# Road Intelligence — Shared Class Ontology
+# =============================================================================
+# This file is the SINGLE SOURCE OF TRUTH for normalized class names used
+# across every module in the project.
+#
+# RULES (see shared/README.md for full detail):
+#   1. Dataset-specific class names (e.g. "D00", "hcrack", "plastic bottle")
+#      must NEVER be returned by a module's predict() output. They must be
+#      mapped to one of the names below via each module's class_mapping.py.
+#   2. If a dataset class cannot be safely/unambiguously mapped to one of
+#      these names, it must be documented and excluded — not force-mapped.
+#   3. Do not add, rename, or remove classes here without team agreement —
+#      every module's mapping and the shared schema depend on this file.
+# =============================================================================
+
+road_damage:
+  - pothole
+  - longitudinal_crack
+  - transverse_crack
+  - alligator_crack
+
+road_surface:
+  - surface_damage
+  - road_patch
+  - ravelling
+
+road_obstacle:
+  - road_debris
+
+road_feature:
+  - speed_bump
+
+vehicles:
+  - car
+  - truck
+  - bus
+  - motorcycle
+  - bicycle
+  - person
+
+# -----------------------------------------------------------------------------
+# Convenience groupings (derived — do not treat as separate ontologies).
+# A "detection" (bbox-based) can be any of: road_damage + road_obstacle +
+# road_feature + vehicles.
+# A "segmentation" (mask-based) can be any of: road_damage + road_surface.
+# -----------------------------------------------------------------------------
+detection_classes:
+  - pothole
+  - longitudinal_crack
+  - transverse_crack
+  - alligator_crack
+  - road_debris
+  - speed_bump
+  - car
+  - truck
+  - bus
+  - motorcycle
+  - bicycle
+  - person
+
+segmentation_classes:
+  - pothole
+  - surface_damage
+  - road_patch
+  - ravelling

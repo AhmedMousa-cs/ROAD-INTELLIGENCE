@@ -1,0 +1,20 @@
+# modules/tracking_analytics — Person 4 dependencies
+#
+# The repo-level requirements.txt already covers numpy / opencv / PyYAML /
+# pytest / ultralytics / streamlit. This file exists so the module can be
+# installed on its own, and to record which deps are OPTIONAL.
+
+# --- Required: tracking + analytics layer runs on these alone -----------------
+numpy>=1.24
+opencv-python>=4.8
+PyYAML>=6.0
+
+# --- Required for the REAL vehicle detector ----------------------------------
+# Not needed for the tracking/analytics logic, the test suite, or --demo.
+# NOTE: ultralytics is AGPL-3.0 — see README "Known limitations".
+# torch is pulled in by ultralytics; install the CUDA build separately from
+# pytorch.org if GPU inference is wanted.
+ultralytics>=8.2
+
+# --- Testing -----------------------------------------------------------------
+pytest>=7.4

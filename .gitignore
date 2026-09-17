@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# datasets and weights are large — track via README instructions, not git
+/data/*
+!/data/.gitkeep
+/models/*.pt
+!/models/.gitkeep
+
+.ipynb_checkpoints/
+.DS_Store

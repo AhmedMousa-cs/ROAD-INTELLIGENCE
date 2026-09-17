@@ -1,0 +1,18 @@
+# Road Intelligence — base requirements
+# Each module may add extra deps in its own README, but anything used by
+# shared/ or app/ belongs here so a clean checkout can install everything.
+
+# Core
+numpy>=1.24
+opencv-python>=4.8
+PyYAML>=6.0
+pytest>=7.4
+
+# Detection / segmentation / tracking (YOLO family covers Person 1-4)
+ultralytics>=8.2
+
+# Dashboard
+streamlit>=1.32
+
+# Testing / dev
+pytest-cov>=4.1
