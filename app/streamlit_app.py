@@ -26,6 +26,8 @@ from pathlib import Path
 import cv2
 import streamlit as st
 
+
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
@@ -35,7 +37,9 @@ from app.dashboard_logic import (
     load_image_from_bytes,
     load_models,
     render_segmentation_overlay,
+    run_debris_only,
     run_pipeline,
+    run_speed_bump_only,
 )
 
 st.set_page_config(page_title="Road Intelligence", layout="wide")
@@ -61,6 +65,42 @@ with st.sidebar:
         "exact filenames) and reload the page to pick them up."
     )
     show_json = st.checkbox("Show raw merged FrameResult JSON", value=False)
+
+st.divider()
+st.subheader("🚧 Speed Bump Only Test")
+st.caption("Runs ONLY the speed-bump detector on this image — none of the other modules.")
+
+speed_bump_uploaded = st.file_uploader(
+    "Upload an image to test speed-bump detection",
+    type=["jpg", "jpeg", "png", "bmp"],
+    key="speed_bump_only_uploader",
+)
+
+if speed_bump_uploaded is not None:
+    if "obstacles" not in models:
+        st.warning(
+            "Speed-bump model isn't loaded — drop `speed_bump_best.pt` "
+            "(and `debris_best.pt`) into `models/` and reload the page."
+        )
+    else:
+        sb_frame = load_image_from_bytes(speed_bump_uploaded.read())
+        with st.spinner("Running speed-bump detection..."):
+            sb_annotated, sb_count = run_speed_bump_only(models, sb_frame)
+
+        sb_col1, sb_col2 = st.columns(2)
+        with sb_col1:
+            st.image(cv2.cvtColor(sb_frame, cv2.COLOR_BGR2RGB), caption="Original", use_container_width=True)
+        with sb_col2:
+            st.image(
+                cv2.cvtColor(sb_annotated, cv2.COLOR_BGR2RGB),
+                caption="Speed bumps detected",
+                use_container_width=True,
+            )
+        st.metric("Speed bumps found", sb_count)
+
+st.divider()
+
+
 
 uploaded = st.file_uploader("Upload a road image", type=["jpg", "jpeg", "png", "bmp"])
 

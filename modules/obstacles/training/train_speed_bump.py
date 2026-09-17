@@ -79,9 +79,8 @@ def train(
         "started_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "note": "Speed Bump Detection v10 ships its own train/val/test split; not re-split here.",
     }
-
     start = time.time()
-    model.train(
+    results = model.train(
         data=str(data_yaml),
         epochs=epochs,
         batch=batch,
@@ -93,7 +92,10 @@ def train(
     )
     run_config["training_time_seconds"] = round(time.time() - start, 1)
 
-    run_dir = project / name
+    # Ultralytics may nest the actual output under its own runs/<task>/...
+    # prefix regardless of the `project` we passed, so ask it directly for
+    # the real path rather than reconstructing project/name ourselves.
+    run_dir = Path(getattr(results, "save_dir", project / name))
     (run_dir / "run_config.json").write_text(json.dumps(run_config, indent=2))
     print(f"[train_speed_bump] training config recorded at {run_dir / 'run_config.json'}")
     print(f"[train_speed_bump] best weights at {run_dir / 'weights' / 'best.pt'}")

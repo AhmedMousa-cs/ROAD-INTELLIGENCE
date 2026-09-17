@@ -11,10 +11,8 @@
 # and call it an "internal held-out test split" in the README — never
 # "official test set".
 
-path: ../../data/pothole_seg
-train: images/train
-val: images/val
-# test: images/internal_test   # add only if you create one yourself
-
+path: C:/Users/ahmed/PycharmProjects/NTI/Graduation_project/road_intelligence/data/pothole_seg
+train: train/images
+val: valid/images
 names:
   0: pothole

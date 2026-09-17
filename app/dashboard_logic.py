@@ -108,6 +108,58 @@ def run_pipeline(models: dict, frame: np.ndarray) -> dict:
     return final_result
 
 
+def run_debris_only(models: dict, frame: np.ndarray) -> tuple[np.ndarray, int]:
+    """Run ONLY the road-debris detector on one frame, bypassing road_damage,
+    road_segmentation, speed_bump and tracking entirely.
+
+    Reuses the already-loaded `RoadObstacleModel.debris_model` sub-model
+    (see modules/obstacles/obstacle_model.py) so no extra weights are loaded
+    and thresholds stay consistent with the rest of the dashboard.
+
+    Raises RuntimeError if the obstacles module isn't loaded (i.e.
+    debris_best.pt and/or speed_bump_best.pt are missing from models/).
+
+    Returns (annotated_frame, debris_count).
+    """
+    obstacles_model = models.get("obstacles")
+    if obstacles_model is None:
+        raise RuntimeError(
+            "Debris model isn't loaded. Drop debris_best.pt "
+            "(and speed_bump_best.pt) into models/ and reload the page."
+        )
+
+    result = obstacles_model.debris_model.predict(frame)
+    detections = result["detections"]
+    annotated = draw_all_detections(frame, detections)
+    return annotated, len(detections)
+
+
+def run_speed_bump_only(models: dict, frame: np.ndarray) -> tuple[np.ndarray, int]:
+    """Run ONLY the speed-bump detector on one frame, bypassing road_damage,
+    road_segmentation, debris and tracking entirely.
+
+    Reuses the already-loaded `RoadObstacleModel.speed_bump_model` sub-model
+    (see modules/obstacles/obstacle_model.py) so no extra weights are loaded
+    and thresholds stay consistent with the rest of the dashboard.
+
+    Raises RuntimeError if the obstacles module isn't loaded (i.e.
+    debris_best.pt and/or speed_bump_best.pt are missing from models/).
+
+    Returns (annotated_frame, speed_bump_count).
+    """
+    obstacles_model = models.get("obstacles")
+    if obstacles_model is None:
+        raise RuntimeError(
+            "Speed-bump model isn't loaded. Drop speed_bump_best.pt "
+            "(and debris_best.pt) into models/ and reload the page."
+        )
+
+    result = obstacles_model.speed_bump_model.predict(frame)
+    detections = result["detections"]
+    annotated = draw_all_detections(frame, detections)
+    return annotated, len(detections)
+
+
 def draw_all_detections(frame: np.ndarray, detections: list[dict]) -> np.ndarray:
     """Draw every bbox detection (road damage + obstacles + speed bumps +
     vehicles), color-grouped by class, using road_damage's generic drawer

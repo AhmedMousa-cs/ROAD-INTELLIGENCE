@@ -118,6 +118,22 @@ TACO_TO_ROAD_DEBRIS: dict[str, str] = {
     # intentionally NOT mapped here: too small / ambiguous as a driving
     # hazard to include by default. Verify against real annotations and
     # add explicitly if your team decides they belong in road_debris.
+
+    # -- flattened / single-class Roboflow TACO exports --------------------
+    # Some Roboflow-hosted versions of TACO (e.g. the "v4-unet" export,
+    # built for binary segmentation) collapse all ~60 original TACO leaf
+    # categories into one generic label before publishing. Verified via
+    # verify_taco_categories() + manual inspection of categories/
+    # annotations/images in that export's _annotations.coco.json: no
+    # fine-grained subclass survives anywhere in the file (not in
+    # `supercategory`, not in per-annotation fields). This is NOT the same
+    # as force-mapping an ambiguous category (like "Cigarette") -- "Trash"
+    # is an honest, unambiguous label, just coarser than the table above.
+    # Mapped to its own subclass ("unsorted_trash") rather than folded into
+    # any bucket above, so it stays distinguishable in analytics from
+    # confidently-identified subclasses.
+    "Trash": "unsorted_trash",
+    "trash": "unsorted_trash",
 }
 
 
@@ -171,6 +187,11 @@ SPEED_BUMP_RAW_TO_NORMALIZED: dict[str, str] = {
     "speedbump": SPEED_BUMP,
     "Speed Bump": SPEED_BUMP,
     "speed-bump": SPEED_BUMP,
+    # Same physical road feature, just unpainted/unmarked — still a speed
+    # bump per the project ontology (which has no separate "marked" vs
+    # "unmarked" class).
+    "unmarked-speed-bump": SPEED_BUMP,
+
 }
 
 
@@ -181,3 +202,16 @@ def map_speed_bump_category(raw_name: str) -> str | None:
     dataset only ever contains the expected label.
     """
     return SPEED_BUMP_RAW_TO_NORMALIZED.get(raw_name)
+
+# Map YOLO's raw class names -> normalized names from shared/classes.yaml
+# TODO: replace with your actual YOLO class names (check data.yaml `names:`)
+# and the actual normalized names from shared/classes.yaml
+DEBRIS_CLASS_MAP = {
+    "debris": "road_debris",
+    "pothole_debris": "road_debris",
+    # add every raw class your model can output — anything unmapped gets dropped
+}
+
+def map_class(raw_name: str) -> str | None:
+    """Returns the normalized class name, or None to exclude this detection."""
+    return DEBRIS_CLASS_MAP.get(raw_name)
